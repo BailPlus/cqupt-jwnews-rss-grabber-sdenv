@@ -1,0 +1,32 @@
+[project]
+name = "cqupt-jwnews-rss-grabber-sdenv"
+version = "1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Bail", email = "2915289604@qq.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "cqupt-jwnews-rss>=2.0",
+    "httpx>=0.28.1",
+    "pydantic-settings>=2.14.2",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[[tool.uv.index]]
+name = 'Bail'
+url = 'https://pypi.bail.asia/simple/'
+explicit = true
+
+[tool.uv.sources]
+cqupt-jwnews-rss = { index = 'Bail' }
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "src/cqupt_jwnews_rss",
+    "src/cqupt_jwnews_rss_grabber_sdenv",
+]
