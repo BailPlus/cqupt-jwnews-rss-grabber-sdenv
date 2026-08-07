@@ -1,3 +1,4 @@
+from logging import getLogger
 from typing import Self
 
 from cqupt_jwnews_rss.const import NEWS_URL
@@ -6,6 +7,8 @@ from cqupt_jwnews_rss.model import News
 from httpx import Client
 
 from cqupt_jwnews_rss_grabber_sdenv.config import config
+
+logger = getLogger(__name__)
 
 
 class SdenvGrabber(BaseGrabber):
@@ -25,7 +28,7 @@ class SdenvGrabber(BaseGrabber):
         resp = self.client.get(NEWS_URL.replace("https", "http"))
         # del resp.headers["Content-Encoding"]
         # print(resp.headers)
-        print(resp.text)
+        logger.debug(resp.text)
         return list(News.from_page_source(resp.text))
 
     def __exit__(self, exc_type, exc_val, exc_tb):

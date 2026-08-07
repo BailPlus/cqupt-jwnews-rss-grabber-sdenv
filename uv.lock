@@ -60,7 +60,7 @@ wheels = [
 [[package]]
 name = "cqupt-jwnews-rss"
 version = "2.1"
-source = { registry = "https://pypi.bail.asia/simple" }
+source = { registry = "https://pypi.bail.asia/simple/" }
 dependencies = [
     { name = "bs4" },
     { name = "feedgen" },
@@ -74,7 +74,7 @@ wheels = [
 
 [[package]]
 name = "cqupt-jwnews-rss-grabber-sdenv"
-version = "1.0"
+version = "1.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "cqupt-jwnews-rss" },
@@ -84,7 +84,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "cqupt-jwnews-rss", specifier = ">=2.0", index = "https://pypi.bail.asia/simple" },
+    { name = "cqupt-jwnews-rss", specifier = ">=2.0", index = "https://pypi.bail.asia/simple/" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "pydantic-settings", specifier = ">=2.14.2" },
 ]
