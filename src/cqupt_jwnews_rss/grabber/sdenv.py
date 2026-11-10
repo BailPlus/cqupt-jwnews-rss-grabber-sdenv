@@ -25,7 +25,7 @@ class SdenvGrabber(BaseGrabber):
         return self
 
     def get_news(self) -> list[News]:
-        resp = self.client.get(NEWS_URL.replace("https", "http"))
+        resp = self.client.get(NEWS_URL, verify=False)
         # del resp.headers["Content-Encoding"]
         # print(resp.headers)
         logger.debug(resp.text)
