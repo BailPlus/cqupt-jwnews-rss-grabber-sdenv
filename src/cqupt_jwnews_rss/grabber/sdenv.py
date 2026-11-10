@@ -4,7 +4,7 @@ from typing import Self
 from cqupt_jwnews_rss.const import NEWS_URL
 from cqupt_jwnews_rss.grabber.base import BaseGrabber
 from cqupt_jwnews_rss.model import News
-from httpx import Client
+from httpx2 import Client
 
 from cqupt_jwnews_rss_grabber_sdenv.config import config
 
