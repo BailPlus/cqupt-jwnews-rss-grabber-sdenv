@@ -66,7 +66,7 @@ wheels = [
 
 [[package]]
 name = "cqupt-jwnews-rss-grabber-sdenv"
-version = "1.1"
+version = "1.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "cqupt-jwnews-rss" },

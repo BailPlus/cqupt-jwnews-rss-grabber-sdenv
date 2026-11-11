@@ -1,4 +1,6 @@
+import ssl
 from logging import getLogger
+from pathlib import Path
 from typing import Self
 
 from cqupt_jwnews_rss.const import NEWS_URL
@@ -9,6 +11,11 @@ from httpx2 import Client
 from cqupt_jwnews_rss_grabber_sdenv.config import config
 
 logger = getLogger(__name__)
+_ssl_cert_ctx = (
+    ssl.create_default_context(cafile=config.SDENV_SERVER_CA_FILE)
+    if isinstance(config.SDENV_SERVER_CA_FILE, Path)
+    else config.SDENV_SERVER_CA_FILE
+)
 
 
 class SdenvGrabber(BaseGrabber):
@@ -18,14 +25,16 @@ class SdenvGrabber(BaseGrabber):
 
     def __init__(self):
         self.client = Client(
-            proxy=config.SDENV_SERVER_URL, headers={"Accept-Encoding": "identity"}
+            proxy=config.SDENV_SERVER_URL,
+            headers={"Accept-Encoding": "identity"},
+            verify=_ssl_cert_ctx,
         )
 
     def __enter__(self) -> Self:
         return self
 
     def get_news(self) -> list[News]:
-        resp = self.client.get(NEWS_URL, verify=False)
+        resp = self.client.get(NEWS_URL)
         # del resp.headers["Content-Encoding"]
         # print(resp.headers)
         logger.debug(resp.text)
